@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "senacapp-e9af0": {
+      "hosting": {
+        "app": [
+          "senacapp-e9af0"
+        ]
+      }
+    }
+  }
+}
