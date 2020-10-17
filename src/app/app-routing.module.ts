@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import { AngularFireAuthGuard, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
-const redirectLoggedInToHome = () => redirectLoggedInTo(['home']);
+const redirectLoggedInToCadastro = () => redirectLoggedInTo(['cadastro']);
 
 const routes: Routes = [
   {
@@ -15,15 +15,13 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./paginas/login/login.module').then(m => m.LoginPageModule),
     canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: redirectLoggedInToHome }
+    data: { authGuardPipe: redirectLoggedInToCadastro }
   },
   {
-    path: 'cadastrar',
-    loadChildren: () => import('./paginas/cadastrar/cadastrar.module').then(m => m.CadastrarPageModule)
-  },
-  {
-    path: 'recuperar-senha',
-    loadChildren: () => import('./paginas/recuperar-senha/recuperar-senha.module').then(m => m.RecuperarSenhaPageModule),
+    path: 'cadastro',
+    loadChildren: () => import('./paginas/cadastro/cadastro.module').then( m => m.CadastroPageModule),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'home',
@@ -31,6 +29,16 @@ const routes: Routes = [
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
+
+  // {
+  //   path: 'cadastrar',
+  //   loadChildren: () => import('./paginas/cadastrar/cadastrar.module').then(m => m.CadastrarPageModule)
+  // },
+  // {
+  //   path: 'recuperar-senha',
+  //   loadChildren: () => import('./paginas/recuperar-senha/recuperar-senha.module').then(m => m.RecuperarSenhaPageModule),
+  // },
+
 ];
 
 @NgModule({

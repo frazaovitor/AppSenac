@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cadastro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <label>Todos os campos são obrigatorios*</label>
+  <form [formGroup]="fGroup">
+    <ion-item>
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input type="text" formControlName="nome" placeholder="Digite seu Nome"></ion-input>
+    </ion-item>
+
+    <ion-item>
+    <ion-label position="floating">Sobrenome</ion-label>
+    <ion-input type="text" formControlName="sobrenome" placeholder="Digite seu Sobrenome"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Email</ion-label>
+    <ion-input type="email" formControlName="email" placeholder="email@example.com"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">CPF</ion-label>
+    <ion-input type="text" formControlName="cpf" placeholder="000.000.000-00"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Perfil</ion-label>
+    <ion-input type="text" formControlName="perfil" placeholder="Example: Estudante, Administrador, Coordenador e Instrutor"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Codigo</ion-label>
+    <ion-input type="number" formControlName="codigo" placeholder="Codigo de acesso"></ion-input>
+   <!-- <div *ngIf="fGroup.controls.codigo.errors">
+       <p *ngIf="fGroup.controls.curso.errors.required">Esse campo é obrigatório!</p>
+    </div> -->
+  </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input type="password" formControlName="senha" placeholder="Informe um senha"></ion-input>
+    </ion-item>
+       
+  </form>
+
+  </ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-button (click)="submitForm()" expand="full" [disabled]="!fGroup.valid">
+          Enviar
+        </ion-button>
+    </ion-toolbar>
+</ion-footer>

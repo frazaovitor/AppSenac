@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { LoadingController, ToastController } from '@ionic/angular';
-import { User } from 'src/app/interface/user';
-import { AuthService } from 'src/app/services/auth.service';
 import { auth } from 'firebase/app';
 import { Router } from '@angular/router';
+
+// import { LoadingController, ToastController } from '@ionic/angular';
+// import { User } from 'src/app/interface/user';
+// import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -13,15 +14,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  public userLogin: User = {};
-  private loading: any;
+  // public userLogin: User = {};
+  // private loading: any;
 
   constructor(
-    public loadingController: LoadingController,
     public afAuth: AngularFireAuth,
-    private authService: AuthService,
-    private toastCtrl: ToastController,
     public router: Router,
+    // public loadingController: LoadingController,
+    // private authService: AuthService,
+    // private toastCtrl: ToastController,
   ) { }
 
   ngOnInit() {
@@ -29,56 +30,51 @@ export class LoginPage implements OnInit {
 
   loginGoogle() {
     this.afAuth.signInWithPopup(new auth.GoogleAuthProvider()).then(()=>{
-      this.router.navigate(['home']);
-    })
+      this.router.navigate(['cadastro']);
+    });
   }
   logoutGoogle() {
     this.afAuth.signOut();
   }
 
+  // async logar() {
+  //   await this.presentLoading();
+  //   try {
+  //     await this.authService.login(this.userLogin);
+  //   } catch (error) {
 
-  // logar(){
-  //   this.afAuth.signInWithEmailAndPassword(this.userLogin)
+  //     let message: string;
+  //     switch (error.code) {
+  //       case 'auth/wrong-password':
+  //         message = 'Email ou Senha incorretos.';
+  //         break;
+
+  //       case 'auth/user-not-found':
+  //         message = 'E-mail não cadastrado.';
+          // break;
+  //     }
+
+  //     this.presentToast(error.message);
+  //   } finally {
+  //     this.loading.dismiss();
+  //     this.router.navigate(['home']);
+  //   }
   // }
 
-  async logar() {
-    await this.presentLoading();
-    try {
-      await this.authService.login(this.userLogin);
-    } catch (error) {
+  // async presentLoading() {
+  //   this.loading = await this.loadingController.create({
+  //     cssClass: 'my-custom-class',
+  //     message: 'Cadastrando...',
+  //   });
+  //   return this.loading.present();
+  // }
 
-      let message: string;
-      switch (error.code) {
-        case 'auth/wrong-password':
-          message = 'Email ou Senha incorretos.';
-          break;
-
-        case 'auth/user-not-found':
-          message = 'E-mail não cadastrado.';
-          break;
-      }
-
-      this.presentToast(error.message);
-    } finally {
-      this.loading.dismiss();
-      this.router.navigate(['home']);
-    }
-  }
-
-  async presentLoading() {
-    this.loading = await this.loadingController.create({
-      cssClass: 'my-custom-class',
-      message: 'Cadastrando...',
-    });
-    return this.loading.present();
-  }
-
-  async presentToast(message: string) {
-    const toast = await this.toastCtrl.create({
-      message,
-      duration: 5000
-    });
-    toast.present();
-  }
+  // async presentToast(message: string) {
+  //   const toast = await this.toastCtrl.create({
+  //     message,
+  //     duration: 5000
+  //   });
+  //   toast.present();
+  // }
 
 }

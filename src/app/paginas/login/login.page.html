@@ -1,16 +1,26 @@
 <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-    <ion-title>login</ion-title>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
 
+  <div class="centralizar">
+    <ng-template #showLoginGoogle>
+      <ion-button expand="full" color="light" (click)="loginGoogle()">Entrar com o Google</ion-button>
+    </ng-template>
 
-      <div>
+    <div *ngIf="afAuth.user | async as user; else showLoginGoogle" class="ion-padding">
+    </div>
+
+  </div>
+
+  <!-- FAZER DEPOIS, LOGIN NO PRÓPRIO APP  -->
+
+  <!-- <div>
           <label for="nome">Login:</label>
           <input type="text" id="nome" [(ngModel)]="userLogin.email">
       </div>
@@ -23,19 +33,5 @@
       <br>
   <a href="/cadastrar">Cadastrar</a>
   <br>
-  <a href="/recuperar-senha">Recuperar Senha</a>
-  
-  <ng-template #showLogin>
-    <button (click)="loginGoogle()">Entrar com o  Google</button>
-  </ng-template>
-
-  <div *ngIf="afAuth.user | async as user; else showLogin" class="ion-padding">
-    <h1>Olá, {{ user.displayName }}!</h1>
-  </div>
-
-  <div>
-    <ion-button color="success" (click)="logoutGoogle()" onclick="window.location.reload()">Deslogar</ion-button>
-  </div>
-
-
+  <a href="/recuperar-senha">Recuperar Senha</a> -->
 </ion-content>

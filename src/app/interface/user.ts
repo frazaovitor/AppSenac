@@ -1,4 +1,4 @@
-export interface User {
-    email?: string;
-    senha?: string;
-}
+// export interface User {
+//     email?: string;
+//     senha?: string;
+// }
